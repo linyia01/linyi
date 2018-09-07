@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        eys_key {
+            storeFile file('E:/new_tf_code/android-vision/visionSamples/googly-eyes/eyes_key.jks')
+            keyAlias 'eyes_key'
+            keyPassword 'linz123'
+            storePassword 'linz123'
+        }
+    }
+    compileSdkVersion 24
+//    buildToolsVersion '24.0.2'
+    defaultConfig {
+        applicationId "com.google.android.gms.samples.vision.face.googlyeyes"
+        minSdkVersion 14
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.eys_key
+            debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+        }
+//        mybuildType {
+//            minifyEnabled false
+////            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.eys_key
+//            debuggable false
+//            jniDebuggable false
+//            zipAlignEnabled true
+//        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v4:25+'
+    compile 'com.android.support:design:25+'
+//    compile 'com.android.support:support-v4:24.2.0'
+//    compile 'com.android.support:design:24.2.0'
+    compile 'com.android.support:appcompat-v7:25+'
+    // https://mvnrepository.com/artifact/com.android.support/appcompat-v7
+//    compile group: 'com.android.support', name: 'appcompat-v7', version: '24.1.1'
+    compile 'com.android.support:multidex:1.0.3'
+    compile group: 'com.google.android.gms', name: 'play-services', version: '10+'
+}
